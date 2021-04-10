@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 22, 2020 9:02:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="kedai.Acounts" table="acounts" catalog="dbkedai" optimistic-lock="version">
+        <id name="username" type="string">
+            <column name="username" length="25" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="string">
+            <column name="password" length="25" not-null="true" />
+        </property>
+        <property name="nama" type="string">
+            <column name="nama" length="25" not-null="true" />
+        </property>
+        <property name="role" type="string">
+            <column name="role" length="25" not-null="true" />
+        </property>
+        <set name="orderrs" table="orderr" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_kasir" length="25" not-null="true" />
+            </key>
+            <one-to-many class="kedai.Orderr" />
+        </set>
+    </class>
+</hibernate-mapping>
